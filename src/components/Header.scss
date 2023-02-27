@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    input[type="text"] {
+      width: 280px;
+      height: 40px;
+      border-radius: 25px;
+      border: 0px;
+      padding: 15px;
+      background: #F4F7F9;
+      outline: none;
+      color: #B4B4B4;
+      font-family: "Helvetica", FontAwesome, sans-serif;
+    }
+
+    & > * {
+      margin-right: 30px;
+    }
+
+    span {
+      align-items: center;
+    }
+
+    i {
+      margin-right: 4px;
+    }
+  }
+}

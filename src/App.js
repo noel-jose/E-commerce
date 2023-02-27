@@ -1,24 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./pages/Layout";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import SingleProduct from "./pages/SingleProduct";
+import { createContext, useEffect, useState } from "react";
+import axios from "axios";
+
+export const ProductContext = createContext();
 
 function App() {
+  const [products, setProducts] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [cart, setCart] = useState([]);
+  const BACKEND_URL = "http://localhost:8000/products";
+
+  const fetchData = () => {
+    axios
+      .get(BACKEND_URL)
+      .then((res) => {
+        setProducts(res.data);
+        setIsLoaded(true);
+      })
+      .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    fetchData();
+  });
+  useEffect(() => {
+    console.log(products);
+  }, [isLoaded]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    isLoaded && (
+      <ProductContext.Provider
+        value={(products, setProducts, cart, setCart, fetchData)}
+      >
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="product" element={<SingleProduct />} />
+              <Route path="cart" element={<Cart />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </ProductContext.Provider>
+    )
   );
 }
 
