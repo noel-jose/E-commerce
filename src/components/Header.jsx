@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../img/logo.png";
 import "./Header.scss";
+import Button from "./Button";
 
 const Header = () => {
   return (
@@ -15,6 +16,7 @@ const Header = () => {
         <span>
           <i class="fa-sharp fa-solid fa-cart-shopping"></i>Cart
         </span>
+        <Button text="Add Product" />
       </div>
     </div>
   );

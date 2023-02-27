@@ -26,7 +26,7 @@ function App() {
   };
   useEffect(() => {
     fetchData();
-  });
+  },[]);
   useEffect(() => {
     console.log(products);
   }, [isLoaded]);
@@ -34,7 +34,7 @@ function App() {
   return (
     isLoaded && (
       <ProductContext.Provider
-        value={(products, setProducts, cart, setCart, fetchData)}
+        value={{ products, setProducts, cart, setCart, fetchData }}
       >
         <BrowserRouter>
           <Routes>

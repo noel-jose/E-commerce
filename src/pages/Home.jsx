@@ -1,13 +1,16 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ProductContext } from "../App";
+import SideBar from "../components/SideBar";
+import ProductCard from "../components/ProductCard";
+import ProductsContainer from "../components/ProductsContainer";
 
 const Home = () => {
-  const { products } = useContext(ProductContext);
   return (
     <div>
-      Home
-      <div>{products}</div>
+      <SideBar />
+      Home products
+      <ProductsContainer />
     </div>
   );
 };

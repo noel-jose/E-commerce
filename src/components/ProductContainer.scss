@@ -1,0 +1,7 @@
+.productContianer {
+  margin-inline:auto;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  align-items: center;
+  width: 80vw;
+}
