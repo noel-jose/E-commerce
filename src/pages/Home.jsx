@@ -6,11 +6,29 @@ import ProductCard from "../components/ProductCard";
 import ProductsContainer from "../components/ProductsContainer";
 
 const Home = () => {
+  const [category, setCategory] = useState("all");
+  const [maxPrice, setMaxPrice] = useState(1000);
+  const [rating, setRating] = useState(1);
+  const [filter, setFilter] = useState({
+    category: false,
+    maxPrice: false,
+    rating: false,
+  });
+
   return (
-    <div>
-      <SideBar />
-      Home products
-      <ProductsContainer />
+    <div className="home">
+      <SideBar
+        setCategory={setCategory}
+        setMaxPrice={setMaxPrice}
+        setRating={setRating}
+        setFilter={setFilter}
+      />
+      {console.log(maxPrice, category, rating)}
+      <ProductsContainer
+        category={category}
+        maxPrice={maxPrice}
+        rating={rating}
+      />
     </div>
   );
 };

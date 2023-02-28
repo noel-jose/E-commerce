@@ -10,11 +10,11 @@ const Header = () => {
       <div>
         <input type="text" placeholder="&#xF002;  Search Something" />
         <span>
-          <i class="fa-regular fa-user"></i>
+          <i className="fa-regular fa-user"></i>
           Account
         </span>
         <span>
-          <i class="fa-sharp fa-solid fa-cart-shopping"></i>Cart
+          <i className="fa-sharp fa-solid fa-cart-shopping"></i>Cart
         </span>
         <Button text="Add Product" />
       </div>
