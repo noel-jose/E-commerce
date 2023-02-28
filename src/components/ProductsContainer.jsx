@@ -6,6 +6,8 @@ import { ProductContext } from "../App";
 import Button from "./Button";
 
 const ProductsContainer = ({ category, maxPrice, rating, filter }) => {
+  const { searchText } = useContext(ProductContext);
+
   const increaseProductCount = () => {
     console.log("Button clicked");
     setProductCount((prev) => prev + 3);
@@ -30,6 +32,11 @@ const ProductsContainer = ({ category, maxPrice, rating, filter }) => {
     if (filter.rating == true && rating != "all") {
       filtered = filtered.filter((product) => product.rating.rate > rating);
     }
+    if (searchText != " ") {
+      filtered = filtered.filter((product) =>
+        product.title.toLowerCase().includes(searchText.toLowerCase())
+      );
+    }
     console.log("Called filter func");
     setFiltered(filtered);
     if (filter.rating || filter.category || filter.maxPrice)
@@ -38,7 +45,7 @@ const ProductsContainer = ({ category, maxPrice, rating, filter }) => {
 
   useEffect(() => {
     filterProducts();
-  }, [maxPrice, category, rating]);
+  }, [maxPrice, category, rating, searchText]);
 
   return (
     <div>
@@ -47,7 +54,7 @@ const ProductsContainer = ({ category, maxPrice, rating, filter }) => {
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-      {productCount < products.length ? (
+      {productCount < filtered.length && filtered.length >= 3 ? (
         <Button text="Load More" onclickfunc={increaseProductCount} />
       ) : null}
     </div>
