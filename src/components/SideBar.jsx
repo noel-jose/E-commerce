@@ -1,7 +1,13 @@
 import React from "react";
 import "./SideBar.scss";
 
-const SideBar = ({ setCategory, setMaxPrice, setRating, setFilter }) => {
+const SideBar = ({
+  setCategory,
+  setMaxPrice,
+  setRating,
+  setFilter,
+  filter,
+}) => {
   return (
     <div className="sidebar">
       <span className="sidebar__heading_main">Filters</span>
@@ -15,7 +21,11 @@ const SideBar = ({ setCategory, setMaxPrice, setRating, setFilter }) => {
           type="range"
           min="0"
           max="1000"
-          onChange={(e) => setMaxPrice(e.target.value)}
+          step={100}
+          onChange={(e) => {
+            setMaxPrice(e.target.value);
+            setFilter({ ...filter, maxPrice: true });
+          }}
         ></input>
       </div>
       {/* based on category  */}
@@ -23,7 +33,13 @@ const SideBar = ({ setCategory, setMaxPrice, setRating, setFilter }) => {
         <label htmlFor="category" className="sidebar__heading">
           Categories
         </label>
-        <div className="flex" onChange={(e) => setCategory(e.target.value)}>
+        <div
+          className="flex"
+          onChange={(e) => {
+            setCategory(e.target.value);
+            setFilter({ ...filter, category: true });
+          }}
+        >
           <div>
             <input
               type="radio"
@@ -55,9 +71,20 @@ const SideBar = ({ setCategory, setMaxPrice, setRating, setFilter }) => {
         <label htmlFor="rating" className="sidebar__heading">
           Ratings
         </label>
-        <div className="flex" onChange={(e) => setRating(e.target.value)}>
+        <div
+          className="flex"
+          onChange={(e) => {
+            setRating(e.target.value);
+            setFilter({ ...filter, rating: true });
+          }}
+        >
           <div>
-            <input type="radio" value="" name="rating" defaultChecked={true} />{" "}
+            <input
+              type="radio"
+              value="all"
+              name="rating"
+              defaultChecked={true}
+            />{" "}
             All
           </div>
           <div>

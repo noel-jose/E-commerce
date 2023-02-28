@@ -12,6 +12,7 @@ export const ProductContext = createContext();
 function App() {
   const [products, setProducts] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [searchText, setSearchText] = useState("");
   const [cart, setCart] = useState([]);
   const BACKEND_URL = "http://localhost:8000/products";
 
@@ -26,7 +27,7 @@ function App() {
   };
   useEffect(() => {
     fetchData();
-  },[]);
+  }, []);
   useEffect(() => {
     console.log(products);
   }, [isLoaded]);
@@ -34,7 +35,15 @@ function App() {
   return (
     isLoaded && (
       <ProductContext.Provider
-        value={{ products, setProducts, cart, setCart, fetchData }}
+        value={{
+          products,
+          setProducts,
+          cart,
+          setCart,
+          fetchData,
+          searchText,
+          setSearchText,
+        }}
       >
         <BrowserRouter>
           <Routes>

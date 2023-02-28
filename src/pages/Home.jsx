@@ -22,12 +22,21 @@ const Home = () => {
         setMaxPrice={setMaxPrice}
         setRating={setRating}
         setFilter={setFilter}
+        filter={filter}
       />
-      {console.log(maxPrice, category, rating)}
+      {console.log(
+        maxPrice,
+        category,
+        rating,
+        filter.maxPrice,
+        filter.rating,
+        filter.category
+      )}
       <ProductsContainer
         category={category}
         maxPrice={maxPrice}
         rating={rating}
+        filter={filter}
       />
     </div>
   );

@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import { ProductContext } from "../App";
 import Button from "./Button";
 
-const ProductsContainer = ({ category, maxPrice, rating }) => {
+const ProductsContainer = ({ category, maxPrice, rating, filter }) => {
   const increaseProductCount = () => {
     console.log("Button clicked");
     setProductCount((prev) => prev + 3);
@@ -20,14 +20,24 @@ const ProductsContainer = ({ category, maxPrice, rating }) => {
   // }, [category]);
 
   const filterProducts = () => {
-    const filtered = products;
-
-    
+    let filtered = products;
+    if (filter.maxPrice == true) {
+      filtered = filtered.filter((product) => product.price <= maxPrice);
+    }
+    if (filter.category == true && category != "all") {
+      filtered = filtered.filter((product) => product.category == category);
+    }
+    if (filter.rating == true && rating != "all") {
+      filtered = filtered.filter((product) => product.rating.rate > rating);
+    }
+    console.log("Called filter func");
+    setFiltered(filtered);
+    if (filter.rating || filter.category || filter.maxPrice)
+      setProductCount(products.length);
   };
 
   useEffect(() => {
-    setProductCount(products.length);
-    setFiltered(products.filter((product) => product.price <= maxPrice));
+    filterProducts();
   }, [maxPrice, category, rating]);
 
   return (
