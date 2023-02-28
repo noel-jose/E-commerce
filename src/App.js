@@ -6,6 +6,7 @@ import Cart from "./pages/Cart";
 import SingleProduct from "./pages/SingleProduct";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import AddProduct from "./pages/AddProduct";
 
 export const ProductContext = createContext();
 
@@ -51,6 +52,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path="product" element={<SingleProduct />} />
               <Route path="cart" element={<Cart />} />
+              <Route path="addproduct" element={<AddProduct />} />
             </Route>
           </Routes>
         </BrowserRouter>

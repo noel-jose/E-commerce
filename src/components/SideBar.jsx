@@ -19,7 +19,7 @@ const SideBar = ({
         <input
           name="price-range"
           type="range"
-          min="0"
+          min="100"
           max="1000"
           step={100}
           onChange={(e) => {
