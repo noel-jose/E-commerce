@@ -8,6 +8,11 @@
     max-height: 500px;
     align-content: center;
     padding: 20px;
+    margin-top: 4rem;
+  }
+
+  &__quantity{
+    min-width: 25px;
   }
 
   &__right {
@@ -15,6 +20,7 @@
     flex-direction: column;
     padding-inline: 2rem 10rem;
     justify-content: flex-start;
+    margin-top: 5rem;
 
     & > * {
       border-bottom: 1px solid #b7b7b7;
