@@ -15,7 +15,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [cart, setCart] = useState(new Map());
-  const BACKEND_URL = "http://localhost:8000/products";
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   const fetchData = () => {
     axios
@@ -26,14 +26,6 @@ function App() {
       })
       .catch((err) => console.log(err));
   };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    console.log(products);
-  }, [isLoaded]);
 
   const addToCart = (productId) => {
     if (cart.has(productId)) {
@@ -59,32 +51,39 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    console.log(products);
+  }, [isLoaded]);
+
   return (
     isLoaded && (
-      <ProductContext.Provider
-        value={{
-          products,
-          setProducts,
-          cart,
-          setCart,
-          fetchData,
-          searchText,
-          setSearchText,
-          addToCart,
-          removeFromCart,
-        }}
-      >
-        <BrowserRouter>
+      <BrowserRouter>
+        <ProductContext.Provider
+          value={{
+            products,
+            setProducts,
+            cart,
+            setCart,
+            searchText,
+            setSearchText,
+            addToCart,
+            removeFromCart,
+          }}
+        >
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
-              <Route path="product" element={<SingleProduct />} />
+              <Route path="products/:id" element={<SingleProduct />} />
               <Route path="cart" element={<Cart />} />
               <Route path="addproduct" element={<AddProduct />} />
             </Route>
           </Routes>
-        </BrowserRouter>
-      </ProductContext.Provider>
+        </ProductContext.Provider>
+      </BrowserRouter>
     )
   );
 }

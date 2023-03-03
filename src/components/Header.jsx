@@ -29,7 +29,9 @@ const Header = () => {
             <i className="fa-sharp fa-solid fa-cart-shopping"></i>Cart
           </span>
         </Link>
-        <Button text="Add Product" />
+        <Link to="/addproduct">
+          <Button text="Add Product" />
+        </Link>
       </div>
     </div>
   );

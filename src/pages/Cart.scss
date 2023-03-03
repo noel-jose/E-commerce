@@ -1,0 +1,14 @@
+.cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-block: 7rem;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.total{
+  margin-left: 660px;
+  margin-top: 1rem;
+  font-weight: 600;
+}

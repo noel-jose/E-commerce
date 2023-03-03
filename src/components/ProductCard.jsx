@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const ProductCard = ({ product }) => {
   return (
     <div className="productCard">
-      <Link to="/product" state={{ product: product }}>
+      <Link to={`/products/${product.id}`}>
         <img src={product.image} alt="" />
         <p>{product.title}</p>
         <p>{product.price}</p>
@@ -14,4 +14,4 @@ const ProductCard = ({ product }) => {
   );
 };
 
-export default ProductCard;
+export default React.memo(ProductCard);

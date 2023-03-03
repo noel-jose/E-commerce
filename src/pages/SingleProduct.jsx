@@ -1,17 +1,40 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Button from "../components/Button";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import "./SingleProduct.scss";
 import StarContainer from "../components/StarContainer";
 import { ProductContext } from "../App";
 import Cart from "./Cart";
+import axios from "axios";
 
 const SingleProduct = () => {
-  const location = useLocation();
-  const { cart, addToCart, removeFromCart } = useContext(ProductContext);
+  const params = useParams();
+  const [product, setProduct] = useState({});
+  const [loaded, setLoaded] = useState(false);
 
-  const product = location.state?.product;
+  const fetchAProduct = (id) => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/${id}`)
+      .then((response) => {
+        console.log(`${process.env.REACT_APP_BACKEND_URL}/${id}`);
+        console.log(response);
+        setProduct(response.data);
+        setLoaded(true);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    fetchAProduct(params.id);
+  }, []);
+
+  useEffect(() => {
+    console.log(product);
+    console.log(loaded);
+  }, [loaded]);
+
+  const { cart, addToCart, removeFromCart } = useContext(ProductContext);
   const [quantity, setQuantity] = useState(
     cart.has(product.id) ? cart.get(product.id) : 0
   );
@@ -23,10 +46,12 @@ const SingleProduct = () => {
         <div className="singleproduct__main">
           <h2>{product.title}</h2>
           <p>{product.description}</p>
-          <span>
-            <StarContainer rating={product.rating.rate} />(
-            {product.rating.count})
-          </span>
+          {loaded == true && (
+            <span>
+              <StarContainer rating={product.rating.rate} />(
+              {product.rating.count})
+            </span>
+          )}
         </div>
         <div className="singleproduct__price">${product.price}</div>
         <div className="singleproduct__addtocart">

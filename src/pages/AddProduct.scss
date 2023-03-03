@@ -1,0 +1,54 @@
+.addproduct {
+  margin-inline: 6rem;
+  margin-block: 5rem;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    max-width: 750px;
+
+    label {
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+
+      input[type="text"],
+      input[type="number"] {
+        padding: 7px;
+      }
+
+      input[type="radio"] {
+        margin-right: 3px;
+      }
+
+      input[type="submit"] {
+      }
+
+      & > div {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  &__heading {
+    margin-bottom: 1rem;
+    font-size: 24px;
+  }
+
+  &__submit {
+    padding: 0.75rem 2.5rem;
+    background: #023d28;
+    color: white;
+    border-radius: 6px;
+    max-width: 250px;
+    margin-inline: auto;
+    border: 0px;
+    font-weight: 600;
+  }
+}
