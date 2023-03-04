@@ -10,16 +10,12 @@ const Cart = () => {
 
   const [total, setTotal] = useState(0);
 
-  const [cartList, setCartList] = useState([]);
-
-  // cart.map((item) => {
-  //   const cartItemIndex = products.findIndex(item == item.id);
-  //   const cartItem = products[cartItemIndex];
-  //   setCartList(cartList.push(cartItem));
-  // });
-
   useEffect(() => {
     console.log("changed");
+    setTotal(0);
+    cart.forEach((item) => {
+      setTotal((prev) => prev + item.product.price * item.quantity);
+    });
   }, [cart]);
 
   return (

@@ -4,10 +4,10 @@ import StartContainer from "../components/StarContainer";
 import { useContext, useState } from "react";
 import { ProductContext } from "../App";
 
-const CartItem = ({ product }) => {
+const CartItem = ({ product, quantity }) => {
   const { cart, setCart, addToCart, removeFromCart } =
     useContext(ProductContext);
-  const [quantity, setQuantity] = useState(cart.get(product.id));
+  const [itemquantity, setItemQuantity] = useState(quantity);
 
   return (
     <div className="cartItem">
@@ -24,10 +24,10 @@ const CartItem = ({ product }) => {
       <div className="cartItem__button_container">
         <span
           onClick={() =>
-            setQuantity((prev) => {
+            setItemQuantity((prev) => {
               if (prev <= 0) return 0;
               else {
-                removeFromCart(product.id);
+                removeFromCart(product);
                 return prev - 1;
               }
             })
@@ -35,11 +35,11 @@ const CartItem = ({ product }) => {
         >
           <i className="fa-solid fa-minus"></i>
         </span>
-        <span className="CartItem__quantity">{quantity}</span>
+        <span className="CartItem__quantity">{itemquantity}</span>
         <span
           onClick={() => {
-            setQuantity((prev) => prev + 1);
-            addToCart(product.id);
+            setItemQuantity((prev) => prev + 1);
+            addToCart(product);
           }}
         >
           <i className="fa-solid fa-plus"></i>
@@ -47,23 +47,12 @@ const CartItem = ({ product }) => {
       </div>
 
       <span className="cartItem__Price">
-        ${(quantity * product.price).toFixed(2)}
+        ${(itemquantity * product.price).toFixed(2)}
       </span>
       <span
         className="cartItem__RemoveProduct"
         onClick={() => {
-          setCart((prev) => {
-            const copy = new Map(prev);
-            copy.delete(product.id);
-            return copy;
-          });
-
-          // cart.delete(product.id);
-          // const updatedCart = cart;
-          // setCart(updatedCart);
-          // console.log(updatedCart);
-          // console.log(cart)
-          // console.log("Delete Button Pressed");
+          setCart(cart.filter((item) => item.product.id != product.id));
         }}
       >
         <i className="fa-solid fa-x"></i>
