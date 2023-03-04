@@ -31,7 +31,9 @@ const SingleProduct = () => {
   useEffect(() => {
     console.log(product);
     console.log(loaded);
-    setQuantity(cart.find((item) => item.product.id == product.id)?.quantity || 0);
+    setQuantity(
+      cart.find((item) => item.product.id == product.id)?.quantity || 0
+    );
   }, [loaded]);
 
   const { cart, addToCart, removeFromCart } = useContext(ProductContext);
@@ -43,60 +45,56 @@ const SingleProduct = () => {
   );
 
   return (
-    <div className="singleproduct">
-      {console.log(
-        "fitler",
-        cart.find((item) => item.product.id == product.id)
-      )}
-      {console.log("cart", cart)}
-      <img src={product.image} alt="" className="singleproduct__img" />
-      <div className="singleproduct__right">
-        <div className="singleproduct__main">
-          <h2>{product.title}</h2>
-          <p>{product.description}</p>
-          {loaded == true && (
+    loaded == true && (
+      <div className="singleproduct">
+        <img src={product.image} alt="" className="singleproduct__img" />
+        <div className="singleproduct__right">
+          <div className="singleproduct__main">
+            <h2>{product.title}</h2>
+            <p>{product.description}</p>
+
             <span>
               <StarContainer rating={product.rating.rate} />(
               {product.rating.count})
             </span>
-          )}
-        </div>
-        <div className="singleproduct__price">${product.price}</div>
-        <div className="singleproduct__addtocart">
-          <div className="singleproduct__cart">
-            <span
-              onClick={() =>
-                setQuantity((prev) => {
-                  if (prev <= 0) return 0;
-                  else {
-                    removeFromCart(product);
-                    return prev - 1;
-                  }
-                })
-              }
-            >
-              <i className="fa-solid fa-minus"></i>
-            </span>
-            <span className="singleproduct__quantity">{quantity}</span>
-            <span
-              onClick={() => {
-                setQuantity((prev) => prev + 1);
-                addToCart(product);
-              }}
-            >
-              <i className="fa-solid fa-plus"></i>
-            </span>
           </div>
-          <Button
-            text="Add to cart"
-            onclickfunc={() => {
-              addToCart(product);
-              setQuantity(quantity + 1);
-            }}
-          />
+          <div className="singleproduct__price">${product.price}</div>
+          <div className="singleproduct__addtocart">
+            <div className="singleproduct__cart">
+              <span
+                onClick={() =>
+                  setQuantity((prev) => {
+                    if (prev <= 0) return 0;
+                    else {
+                      removeFromCart(product);
+                      return prev - 1;
+                    }
+                  })
+                }
+              >
+                <i className="fa-solid fa-minus"></i>
+              </span>
+              <span className="singleproduct__quantity">{quantity}</span>
+              <span
+                onClick={() => {
+                  setQuantity((prev) => prev + 1);
+                  addToCart(product);
+                }}
+              >
+                <i className="fa-solid fa-plus"></i>
+              </span>
+            </div>
+            <Button
+              text="Add to cart"
+              onclickfunc={() => {
+                addToCart(product);
+                setQuantity(quantity + 1);
+              }}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    )
   );
 };
 

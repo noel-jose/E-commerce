@@ -14,4 +14,4 @@ const StarContainer = ({ rating }) => {
   return <div className="starcontainer">{star.slice(0, rating)}</div>;
 };
 
-export default StarContainer;
+export default React.memo(StarContainer);
