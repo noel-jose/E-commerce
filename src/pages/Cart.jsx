@@ -19,29 +19,15 @@ const Cart = () => {
   // });
 
   useEffect(() => {
-    if (cart.size > 0) {
-      console.log("in cart size great");
-      cart.forEach((value, key) => {
-        const cartItem = products.find((product) => product.id == key);
-        setTotal((prev) => prev + value * cartItem.price);
-        setCartList((prev) => [...prev, cartItem]);
-        console.log(cartList);
-      });
-    } else {
-      console.log("low");
-    }
-  }, [cart]);
-
-  useEffect(() => {
     console.log("changed");
   }, [cart]);
 
   return (
     <div className="cart">
-      {cart.size > 0 ? (
+      {cart.length > 0 ? (
         <div>
-          {cartList.map((product) => (
-            <CartItem product={product} />
+          {cart.map((item) => (
+            <CartItem product={item.product} quantity={item.quantity} />
           ))}
           <span className="total">Total : ${total.toFixed(2)}</span>
         </div>

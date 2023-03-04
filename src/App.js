@@ -14,7 +14,7 @@ function App() {
   const [products, setProducts] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchText, setSearchText] = useState("");
-  const [cart, setCart] = useState(new Map());
+  const [cart, setCart] = useState([]);
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   const fetchData = () => {
@@ -27,27 +27,35 @@ function App() {
       .catch((err) => console.log(err));
   };
 
-  const addToCart = (productId) => {
-    if (cart.has(productId)) {
-      const quantity = cart.get(productId);
-      setCart(new Map(cart.set(productId, quantity + 1)));
+  const addToCart = (product) => {
+    const index = cart.findIndex((item) => item.product.id == product.id);
+    console.log(index);
+    if (index == -1) {
+      setCart((prev) => [...prev, { product: product, quantity: 1 }]);
     } else {
-      setCart(new Map(cart.set(productId, 1)));
+      const curquantity = cart[index].quantity;
+      setCart(
+        cart.map((item) =>
+          item.product.id == product.id
+            ? { ...item, quantity: curquantity + 1 }
+            : item
+        )
+      );
     }
-    console.log(cart);
   };
 
-  const removeFromCart = (productId) => {
-    if (cart.has(productId)) {
-      const quantity = cart.get(productId);
-      console.log("The quantity before deleting ", quantity);
-      if (quantity == 1) {
-        cart.delete(productId);
-        const updateCart = new Map(cart);
-        setCart(updateCart);
-      } else setCart(cart.set(productId, quantity - 1));
-      console.log("remove from cart called");
-      console.log(cart);
+  const removeFromCart = (product) => {
+    const index = cart.findIndex((item) => item.product.id == product.id);
+    const curquantity = cart[index].quantity;
+    setCart(
+      cart.map((item) =>
+        item.product.id == product.id
+          ? { ...item, quantity: curquantity - 1 }
+          : item
+      )
+    );
+    if (curquantity - 1 == 0) {
+      setCart(cart.filter((item) => item.product.id != product.id));
     }
   };
 

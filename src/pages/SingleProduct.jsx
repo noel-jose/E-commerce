@@ -5,7 +5,6 @@ import { useState, useContext, useEffect } from "react";
 import "./SingleProduct.scss";
 import StarContainer from "../components/StarContainer";
 import { ProductContext } from "../App";
-import Cart from "./Cart";
 import axios from "axios";
 
 const SingleProduct = () => {
@@ -17,8 +16,8 @@ const SingleProduct = () => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/${id}`)
       .then((response) => {
-        console.log(`${process.env.REACT_APP_BACKEND_URL}/${id}`);
-        console.log(response);
+        // console.log(`${process.env.REACT_APP_BACKEND_URL}/${id}`);
+        // console.log(response);
         setProduct(response.data);
         setLoaded(true);
       })
@@ -32,15 +31,24 @@ const SingleProduct = () => {
   useEffect(() => {
     console.log(product);
     console.log(loaded);
+    setQuantity(cart.find((item) => item.product.id == product.id)?.quantity || 0);
   }, [loaded]);
 
   const { cart, addToCart, removeFromCart } = useContext(ProductContext);
+
   const [quantity, setQuantity] = useState(
-    cart.has(product.id) ? cart.get(product.id) : 0
+    cart.find((item) => item.product.id == product.id)
+      ? cart.find((item) => item.product.id == product.id).quantity
+      : 0
   );
 
   return (
     <div className="singleproduct">
+      {console.log(
+        "fitler",
+        cart.find((item) => item.product.id == product.id)
+      )}
+      {console.log("cart", cart)}
       <img src={product.image} alt="" className="singleproduct__img" />
       <div className="singleproduct__right">
         <div className="singleproduct__main">
@@ -61,7 +69,7 @@ const SingleProduct = () => {
                 setQuantity((prev) => {
                   if (prev <= 0) return 0;
                   else {
-                    removeFromCart(product.id);
+                    removeFromCart(product);
                     return prev - 1;
                   }
                 })
@@ -73,7 +81,7 @@ const SingleProduct = () => {
             <span
               onClick={() => {
                 setQuantity((prev) => prev + 1);
-                addToCart(product.id);
+                addToCart(product);
               }}
             >
               <i className="fa-solid fa-plus"></i>
@@ -82,7 +90,7 @@ const SingleProduct = () => {
           <Button
             text="Add to cart"
             onclickfunc={() => {
-              addToCart(product.id);
+              addToCart(product);
               setQuantity(quantity + 1);
             }}
           />
