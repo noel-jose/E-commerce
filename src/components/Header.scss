@@ -15,7 +15,7 @@
       border-radius: 25px;
       border: 0px;
       padding: 15px;
-      background: #F4F7F9;
+      background: #f4f7f9;
       outline: none;
       font-family: "Helvetica", FontAwesome, sans-serif;
     }
@@ -26,10 +26,22 @@
 
     span {
       align-items: center;
+      position: relative;
     }
 
     i {
       margin-right: 4px;
     }
+  }
+
+  .cart_quantity {
+    position: absolute;
+    background: #0baa08;
+    color: white;
+    padding: 2px 6px;
+    font-size: 10px;
+    border-radius: 50%;
+    left: 8px;
+    top: -13px
   }
 }

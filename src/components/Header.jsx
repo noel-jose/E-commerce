@@ -7,7 +7,7 @@ import { ProductContext } from "../App";
 import { Link } from "react-router-dom";
 
 const Header = () => {
-  const { setSearchText } = useContext(ProductContext);
+  const { setSearchText, cart } = useContext(ProductContext);
   return (
     <div className="header">
       <Link to="/">
@@ -27,6 +27,9 @@ const Header = () => {
         <Link to="/cart">
           <span>
             <i className="fa-sharp fa-solid fa-cart-shopping"></i>Cart
+            {cart.length > 0 && (
+              <span className="cart_quantity">{cart.length}</span>
+            )}
           </span>
         </Link>
         <Link to="/addproduct">
