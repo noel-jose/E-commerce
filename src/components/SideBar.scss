@@ -21,5 +21,14 @@
         justify-content: start;        
     }
 
+    &__pricecontainer{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__price{
+        font-weight: 500;
+        font-size: 12px;
+    }
     
 }

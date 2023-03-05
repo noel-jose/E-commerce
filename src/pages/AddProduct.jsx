@@ -1,8 +1,9 @@
 import React from "react";
 import "./AddProduct.scss";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ProductContext } from "../App";
 
 const AddProduct = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const AddProduct = () => {
   const [image, setImage] = useState("");
   const [rating, setRating] = useState(0);
   const [ratingCount, setRatingCount] = useState(0);
+  const { makeNotficationVisible } = useContext(ProductContext);
 
   const addProduct = async (product) => {
     const res = axios.post(
@@ -226,6 +228,7 @@ const AddProduct = () => {
               rating: { rate: rating, count: ratingCount },
             });
             navigate("/", { replace: true });
+            makeNotficationVisible("Succesfully added the product");
           }}
         />
       </form>

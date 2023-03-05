@@ -48,7 +48,7 @@ const ProductsContainer = ({ category, maxPrice, rating, filter }) => {
   }, [maxPrice, category, rating, searchText]);
 
   return (
-    <div>
+    <div className="Container">
       <div className="productContianer">
         {filtered.slice(0, productCount).map((product) => (
           <ProductCard key={product.id} product={product} />

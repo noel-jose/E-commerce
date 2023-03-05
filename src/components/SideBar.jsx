@@ -27,6 +27,10 @@ const SideBar = ({
             setFilter({ ...filter, maxPrice: true });
           }}
         ></input>
+        <div className="sidebar__pricecontainer">
+          <span className="sidebar__price">100</span>{" "}
+          <span className="sidebar__price">1000</span>
+        </div>
       </div>
       {/* based on category  */}
       <div>

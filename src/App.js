@@ -7,6 +7,7 @@ import SingleProduct from "./pages/SingleProduct";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import AddProduct from "./pages/AddProduct";
+import React from "react";
 
 export const ProductContext = createContext();
 
@@ -111,4 +112,4 @@ function App() {
   );
 }
 
-export default App;
+export default React.memo(App);

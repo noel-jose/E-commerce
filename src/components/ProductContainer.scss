@@ -3,10 +3,23 @@
   grid-template-columns: 1fr 3fr;
 }
 
+.Container{
+  button{
+    margin-inline: 400px;
+    margin-block: 30px 70px;
+  }
+}
+
 .productContianer {
   margin-inline:auto;
   display: grid;
   grid-template-columns: repeat(3,1fr);
   align-items: center;
   width: 80vw;
+    gap: 10px;
+
+
+  button{
+    margin-inline: auto;
+  }
 }
