@@ -36,7 +36,8 @@ const SingleProduct = () => {
     );
   }, [loaded]);
 
-  const { cart, addToCart, removeFromCart } = useContext(ProductContext);
+  const { cart, addToCart, removeFromCart, makeNotficationVisible } =
+    useContext(ProductContext);
 
   const [quantity, setQuantity] = useState(
     cart.find((item) => item.product.id == product.id)
@@ -67,6 +68,7 @@ const SingleProduct = () => {
                     if (prev <= 0) return 0;
                     else {
                       removeFromCart(product);
+                      makeNotficationVisible("Reduced 1 quantity of the product");
                       return prev - 1;
                     }
                   })
@@ -79,6 +81,7 @@ const SingleProduct = () => {
                 onClick={() => {
                   setQuantity((prev) => prev + 1);
                   addToCart(product);
+                  makeNotficationVisible("Added 1 quantity of the product");
                 }}
               >
                 <i className="fa-solid fa-plus"></i>
@@ -89,6 +92,7 @@ const SingleProduct = () => {
               onclickfunc={() => {
                 addToCart(product);
                 setQuantity(quantity + 1);
+                makeNotficationVisible("Added the product to the cart");
               }}
             />
           </div>

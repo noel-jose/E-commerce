@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import { ProductContext } from "../App";
 
 const CartItem = ({ product, quantity }) => {
-  const { cart, setCart, addToCart, removeFromCart } =
+  const { cart, setCart, addToCart, removeFromCart, makeNotficationVisible } =
     useContext(ProductContext);
   const [itemquantity, setItemQuantity] = useState(quantity);
 
@@ -53,6 +53,7 @@ const CartItem = ({ product, quantity }) => {
         className="cartItem__RemoveProduct"
         onClick={() => {
           setCart(cart.filter((item) => item.product.id != product.id));
+          makeNotficationVisible("Removed the product from the cart");
         }}
       >
         <i className="fa-solid fa-x"></i>

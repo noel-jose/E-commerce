@@ -67,7 +67,7 @@ function App() {
     setNotification((prev) => text);
     setTimeout(() => {
       setIsVisible((prev) => false);
-    }, 2000);
+    }, 3000);
   };
 
   useEffect(() => {
@@ -93,7 +93,7 @@ function App() {
             removeFromCart,
             makeNotficationVisible,
             notification,
-            isVisible
+            isVisible,
           }}
         >
           <Routes>
