@@ -6,12 +6,12 @@ import { useContext } from "react";
 import { ProductContext } from "../App";
 
 const ProductCard = ({ product }) => {
-  const { addToCart } = useContext(ProductContext);
+  const { addToCart, makeNotficationVisible } = useContext(ProductContext);
   return (
     <Link to={`/products/${product.id}`}>
       <div className="productCard">
         <img src={product.image} alt="" />
-        <span className="productCard__title">{product.title.slice(0,35)}</span>
+        <span className="productCard__title">{product.title.slice(0, 35)}</span>
         <div className="productCard__holder">
           <span className="productCard__price">${product.price}</span>
           <div className="productCard__ratingholder">
@@ -22,6 +22,7 @@ const ProductCard = ({ product }) => {
         <div
           className="productCard__button"
           onClick={(e) => {
+            makeNotficationVisible("Added Product to cart");
             e.preventDefault();
             addToCart(product);
           }}

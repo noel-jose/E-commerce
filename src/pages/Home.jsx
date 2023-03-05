@@ -24,14 +24,7 @@ const Home = () => {
         setFilter={setFilter}
         filter={filter}
       />
-      {console.log(
-        maxPrice,
-        category,
-        rating,
-        filter.maxPrice,
-        filter.rating,
-        filter.category
-      )}
+
       <ProductsContainer
         category={category}
         maxPrice={maxPrice}

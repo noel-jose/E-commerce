@@ -15,6 +15,8 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [cart, setCart] = useState([]);
+  const [isVisible, setIsVisible] = useState(false);
+  const [notification, setNotification] = useState("");
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   const fetchData = () => {
@@ -59,6 +61,15 @@ function App() {
     }
   };
 
+  const makeNotficationVisible = (text) => {
+    console.log("Called makeNotification Visible Function");
+    setIsVisible((prev) => true);
+    setNotification((prev) => text);
+    setTimeout(() => {
+      setIsVisible((prev) => false);
+    }, 2000);
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -80,10 +91,14 @@ function App() {
             setSearchText,
             addToCart,
             removeFromCart,
+            makeNotficationVisible,
+            notification,
+            isVisible
           }}
         >
           <Routes>
             <Route path="/" element={<Layout />}>
+              {console.log("Is Visible value ", isVisible)}
               <Route index element={<Home />} />
               <Route path="products/:id" element={<SingleProduct />} />
               <Route path="cart" element={<Cart />} />
