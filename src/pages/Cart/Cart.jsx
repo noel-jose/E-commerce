@@ -10,7 +10,6 @@ const Cart = () => {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    console.log("changed");
     setTotal(0);
     cart.forEach((item) => {
       setTotal((prev) => prev + item.product.price * item.quantity);

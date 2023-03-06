@@ -12,12 +12,13 @@ const SingleProduct = () => {
   const [product, setProduct] = useState({});
   const [loaded, setLoaded] = useState(false);
 
+  const { cart, addToCart, removeFromCart, makeNotficationVisible } =
+    useContext(ProductContext);
+
   const fetchAProduct = (id) => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/${id}`)
       .then((response) => {
-        // console.log(`${process.env.REACT_APP_BACKEND_URL}/${id}`);
-        // console.log(response);
         setProduct(response.data);
         setLoaded(true);
       })
@@ -28,22 +29,12 @@ const SingleProduct = () => {
     fetchAProduct(params.id);
   }, []);
 
+  const [quantity, setQuantity] = useState(0);
   useEffect(() => {
-    console.log(product);
-    console.log(loaded);
     setQuantity(
       cart.find((item) => item.product.id == product.id)?.quantity || 0
     );
   }, [loaded]);
-
-  const { cart, addToCart, removeFromCart, makeNotficationVisible } =
-    useContext(ProductContext);
-
-  const [quantity, setQuantity] = useState(
-    cart.find((item) => item.product.id == product.id)
-      ? cart.find((item) => item.product.id == product.id).quantity
-      : 0
-  );
 
   return (
     loaded == true && (

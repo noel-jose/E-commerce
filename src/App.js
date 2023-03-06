@@ -32,7 +32,6 @@ function App() {
 
   const addToCart = (product) => {
     const index = cart.findIndex((item) => item.product.id == product.id);
-    console.log(index);
     if (index == -1) {
       setCart((prev) => [...prev, { product: product, quantity: 1 }]);
     } else {
@@ -57,15 +56,12 @@ function App() {
           : item
       )
     );
-    console.log(cart);
     if (curquantity - 1 <= 0) {
       setCart(cart.filter((item) => item.product.id != product.id));
     }
-    console.log(cart);
   };
 
   const makeNotficationVisible = (text) => {
-    console.log("Called makeNotification Visible Function");
     setIsVisible((prev) => true);
     setNotification((prev) => text);
     setTimeout(() => {
@@ -76,10 +72,6 @@ function App() {
   useEffect(() => {
     fetchData();
   }, []);
-
-  useEffect(() => {
-    console.log(products);
-  }, [isLoaded]);
 
   return (
     isLoaded && (
@@ -99,17 +91,16 @@ function App() {
             isVisible,
           }}
         >
-          {products && 
+          {products && (
             <Routes>
               <Route path="/" element={<Layout />}>
-                {console.log("Is Visible value ", isVisible)}
                 <Route index element={<Home />} />
                 <Route path="products/:id" element={<SingleProduct />} />
                 <Route path="cart" element={<Cart />} />
                 <Route path="addproduct" element={<AddProduct />} />
               </Route>
             </Routes>
-          }
+          )}
         </ProductContext.Provider>
       </BrowserRouter>
     )

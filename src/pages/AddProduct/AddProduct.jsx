@@ -26,7 +26,6 @@ const AddProduct = () => {
         },
       }
     );
-    console.log("Product added successfully");
   };
 
   return (
@@ -205,19 +204,6 @@ const AddProduct = () => {
           value="Add"
           onClick={(e) => {
             e.preventDefault();
-            console.log(
-              productName,
-              " ",
-              price,
-              " ",
-              desc,
-              " ",
-              category,
-              " ",
-              rating,
-              " ",
-              ratingCount
-            );
             addProduct({
               id: Math.random,
               title: productName,

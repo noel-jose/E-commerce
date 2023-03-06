@@ -16,7 +16,6 @@ const CartItem = ({ product, quantity }) => {
 
   return (
     <div className="cartItem">
-      {console.log(cart)}
       <img
         className="cartItem__image"
         src={product.image}

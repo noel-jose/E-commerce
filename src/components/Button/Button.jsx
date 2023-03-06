@@ -6,7 +6,6 @@ const Button = ({ text, onclickfunc }) => {
     <button
       className="button"
       onClick={() => {
-        console.log("Button clicked");
         onclickfunc();
       }}
     >

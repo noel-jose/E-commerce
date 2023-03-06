@@ -9,7 +9,6 @@ const ProductsContainer = ({ category, maxPrice, rating, filter }) => {
   const { searchText } = useContext(ProductContext);
 
   const increaseProductCount = () => {
-    console.log("Button clicked");
     setProductCount((prev) => prev + 3);
   };
 
@@ -41,7 +40,6 @@ const ProductsContainer = ({ category, maxPrice, rating, filter }) => {
         product.title.toLowerCase().includes(searchText.toLowerCase())
       );
     }
-    console.log("Called filter func");
     setFiltered(filtered);
     if (filter.rating || filter.category || filter.maxPrice)
       setProductCount(products.length);
