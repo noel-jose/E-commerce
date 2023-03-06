@@ -14,10 +14,6 @@ const CartItem = ({ product, quantity }) => {
     makeNotficationVisible("Removed the product from the cart");
   };
 
-  useEffect(() => {
-    console.log("Quantity changed");
-  }, [itemquantity]);
-
   return (
     <div className="cartItem">
       {console.log(cart)}
