@@ -5,8 +5,7 @@ import "./Cart.scss";
 import CartItem from "../components/CartItem";
 
 const Cart = () => {
-  const { products, cart, setCart, addToCart, removeFromCart } =
-    useContext(ProductContext);
+  const { cart } = useContext(ProductContext);
 
   const [total, setTotal] = useState(0);
 

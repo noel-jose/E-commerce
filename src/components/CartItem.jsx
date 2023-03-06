@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./CartItem.scss";
 import StartContainer from "../components/StarContainer";
 import { useContext, useState } from "react";
@@ -9,8 +9,18 @@ const CartItem = ({ product, quantity }) => {
     useContext(ProductContext);
   const [itemquantity, setItemQuantity] = useState(quantity);
 
+  const removeProduct = (product) => {
+    setCart(cart.filter((item) => item.product.id != product.id));
+    makeNotficationVisible("Removed the product from the cart");
+  };
+
+  useEffect(() => {
+    console.log("Quantity changed");
+  }, [itemquantity]);
+
   return (
     <div className="cartItem">
+      {console.log(cart)}
       <img
         className="cartItem__image"
         src={product.image}
@@ -23,15 +33,17 @@ const CartItem = ({ product, quantity }) => {
 
       <div className="cartItem__button_container">
         <span
-          onClick={() =>
+          onClick={() => {
             setItemQuantity((prev) => {
-              if (prev <= 0) return 0;
-              else {
+              if (prev <= 1) {
+                removeProduct(product);
+                return prev;
+              } else {
                 removeFromCart(product);
                 return prev - 1;
               }
-            })
-          }
+            });
+          }}
         >
           <i className="fa-solid fa-minus"></i>
         </span>
@@ -52,8 +64,7 @@ const CartItem = ({ product, quantity }) => {
       <span
         className="cartItem__RemoveProduct"
         onClick={() => {
-          setCart(cart.filter((item) => item.product.id != product.id));
-          makeNotficationVisible("Removed the product from the cart");
+          removeProduct(product);
         }}
       >
         <i className="fa-solid fa-x"></i>

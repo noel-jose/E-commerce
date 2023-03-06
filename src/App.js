@@ -57,9 +57,11 @@ function App() {
           : item
       )
     );
-    if (curquantity - 1 == 0) {
+    console.log(cart);
+    if (curquantity - 1 <= 0) {
       setCart(cart.filter((item) => item.product.id != product.id));
     }
+    console.log(cart);
   };
 
   const makeNotficationVisible = (text) => {
