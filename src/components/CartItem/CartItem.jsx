@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import "./CartItem.scss";
-import StartContainer from "../components/StarContainer";
+import StartContainer from "../StarContainer/StarContainer";
 import { useContext, useState } from "react";
-import { ProductContext } from "../App";
+import { ProductContext } from "../../App";
 
 const CartItem = ({ product, quantity }) => {
   const { cart, setCart, addToCart, removeFromCart, makeNotficationVisible } =

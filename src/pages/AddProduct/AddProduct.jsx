@@ -3,7 +3,7 @@ import "./AddProduct.scss";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ProductContext } from "../App";
+import { ProductContext } from "../../App";
 
 const AddProduct = () => {
   const navigate = useNavigate();

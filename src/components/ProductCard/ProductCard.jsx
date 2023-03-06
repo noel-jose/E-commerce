@@ -1,9 +1,9 @@
 import React from "react";
 import "./ProductCard.scss";
 import { Link } from "react-router-dom";
-import StarContainer from "./StarContainer";
+import StarContainer from "../StarContainer/StarContainer";
 import { useContext } from "react";
-import { ProductContext } from "../App";
+import { ProductContext } from "../../App";
 
 const ProductCard = ({ product }) => {
   const { addToCart, makeNotficationVisible } = useContext(ProductContext);

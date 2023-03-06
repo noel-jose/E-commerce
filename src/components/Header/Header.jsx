@@ -1,9 +1,9 @@
 import React from "react";
-import logo from "../img/logo.png";
+import logo from "../../img/logo.png";
 import "./Header.scss";
-import Button from "./Button";
+import Button from "../Button/Button";
 import { useContext } from "react";
-import { ProductContext } from "../App";
+import { ProductContext } from "../../App";
 import { Link } from "react-router-dom";
 
 const Header = () => {

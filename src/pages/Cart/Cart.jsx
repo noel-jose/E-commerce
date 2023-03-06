@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useContext, useState } from "react";
-import { ProductContext } from "../App";
+import { ProductContext } from "../../App";
 import "./Cart.scss";
-import CartItem from "../components/CartItem";
+import CartItem from "../../components/CartItem/CartItem";
 
 const Cart = () => {
   const { cart } = useContext(ProductContext);

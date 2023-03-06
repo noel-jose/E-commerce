@@ -2,11 +2,11 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
-import Cart from "./pages/Cart";
-import SingleProduct from "./pages/SingleProduct";
+import Cart from "./pages/Cart/Cart";
+import SingleProduct from "./pages/SingleProduct/SingleProduct";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import AddProduct from "./pages/AddProduct";
+import AddProduct from "./pages/AddProduct/AddProduct";
 import React from "react";
 
 export const ProductContext = createContext();

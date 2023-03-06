@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import "./ProductContainer.scss";
-import ProductCard from "./ProductCard";
+import ProductCard from "../ProductCard/ProductCard";
 import { useContext, useState } from "react";
-import { ProductContext } from "../App";
-import Button from "./Button";
+import { ProductContext } from "../../App";
+import Button from "../Button/Button";
 
 const ProductsContainer = ({ category, maxPrice, rating, filter }) => {
   const { searchText } = useContext(ProductContext);
@@ -61,4 +61,4 @@ const ProductsContainer = ({ category, maxPrice, rating, filter }) => {
   );
 };
 
-export default ProductsContainer;
+export default React.memo(ProductsContainer);

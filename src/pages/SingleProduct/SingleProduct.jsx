@@ -1,10 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Button from "../components/Button";
+import Button from "../../components/Button/Button";
 import { useState, useContext, useEffect } from "react";
 import "./SingleProduct.scss";
-import StarContainer from "../components/StarContainer";
-import { ProductContext } from "../App";
+import StarContainer from "../../components/StarContainer/StarContainer";
+import { ProductContext } from "../../App";
 import axios from "axios";
 
 const SingleProduct = () => {
@@ -68,7 +68,9 @@ const SingleProduct = () => {
                     if (prev <= 0) return 0;
                     else {
                       removeFromCart(product);
-                      makeNotficationVisible("Reduced 1 quantity of the product");
+                      makeNotficationVisible(
+                        "Reduced 1 quantity of the product"
+                      );
                       return prev - 1;
                     }
                   })
