@@ -99,15 +99,17 @@ function App() {
             isVisible,
           }}
         >
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              {console.log("Is Visible value ", isVisible)}
-              <Route index element={<Home />} />
-              <Route path="products/:id" element={<SingleProduct />} />
-              <Route path="cart" element={<Cart />} />
-              <Route path="addproduct" element={<AddProduct />} />
-            </Route>
-          </Routes>
+          {products && 
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                {console.log("Is Visible value ", isVisible)}
+                <Route index element={<Home />} />
+                <Route path="products/:id" element={<SingleProduct />} />
+                <Route path="cart" element={<Cart />} />
+                <Route path="addproduct" element={<AddProduct />} />
+              </Route>
+            </Routes>
+          }
         </ProductContext.Provider>
       </BrowserRouter>
     )

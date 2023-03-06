@@ -22,7 +22,11 @@ const Cart = () => {
       {cart.length > 0 ? (
         <div>
           {cart.map((item) => (
-            <CartItem product={item.product} quantity={item.quantity} />
+            <CartItem
+              key={item.product.id}
+              product={item.product}
+              quantity={item.quantity}
+            />
           ))}
           <span className="total">Total : ${total.toFixed(2)}</span>
         </div>

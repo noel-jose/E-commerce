@@ -14,12 +14,16 @@ const ProductsContainer = ({ category, maxPrice, rating, filter }) => {
   };
 
   const { products } = useContext(ProductContext);
-  const [filtered, setFiltered] = useState(products);
+  const [filtered, setFiltered] = useState([]);
   const [productCount, setProductCount] = useState(3);
 
   // useEffect(() => {
   //   category == "all"? setFiltered((products)) : setFiltered(()=>)
   // }, [category]);
+
+  useEffect(() => {
+    setFiltered(products);
+  }, []);
 
   const filterProducts = () => {
     let filtered = products;
@@ -50,9 +54,13 @@ const ProductsContainer = ({ category, maxPrice, rating, filter }) => {
   return (
     <div className="Container">
       <div className="productContianer">
-        {filtered.slice(0, productCount).map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {filtered.length <= 0
+          ? "No Products found"
+          : filtered
+              .slice(0, productCount)
+              .map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
       </div>
       {productCount < filtered.length && filtered.length >= 3 ? (
         <Button text="Load More" onclickfunc={increaseProductCount} />
