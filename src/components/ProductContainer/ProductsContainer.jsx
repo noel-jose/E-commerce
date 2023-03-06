@@ -54,13 +54,15 @@ const ProductsContainer = ({ category, maxPrice, rating, filter }) => {
   return (
     <div className="Container">
       <div className="productContianer">
-        {filtered.length <= 0
-          ? "No Products found"
-          : filtered
-              .slice(0, productCount)
-              .map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
+        {filtered.length <= 0 ? (
+          <h4 style={{ marginInline: "auto" }}>No Products found</h4>
+        ) : (
+          filtered
+            .slice(0, productCount)
+            .map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))
+        )}
       </div>
       {productCount < filtered.length && filtered.length >= 3 ? (
         <Button text="Load More" onclickfunc={increaseProductCount} />
